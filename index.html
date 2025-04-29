@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiMeter - Ukur dan Bagikan Perasaanmu dengan Aman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="modern-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <i class="fas fa-heart-pulse pulse-icon"></i>
+                    <h1>SentiMeter</h1>
+                </div>
+                <h2><i class="fas fa-shield-heart"></i> Ukur dan Bagikan Perasaanmu dengan Aman</h2>
+            </div>
+            <nav class="modern-nav">
+                <a href="#input-emosi" class="active"><i class="fas fa-pen-to-square"></i> Input Emosi</a>
+                <a href="#riwayat"><i class="fas fa-clock-rotate-left"></i> Riwayat</a>
+                <a href="#statistik"><i class="fas fa-chart-line"></i> Statistik</a>
+                <a href="login.html" id="logout-btn" class="logout-btn"><i class="fas fa-right-from-bracket"></i> Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+
+        <!-- Input Emosi Section -->
+        <section id="input-emosi" class="section">
+            <h2>Input Emosi</h2>
+            <form id="emosi-form">
+                <div class="emotion-selector">
+                    <div class="emotion-options">
+                        <input type="radio" id="emosi-senang" name="jenis-emosi" value="senang" required checked>
+                        <label for="emosi-senang" class="emotion-card">
+                            <div class="emotion-icon happy-icon">
+                                <div class="face">
+                                    <div class="eyes"></div>
+                                    <div class="mouth"></div>
+                                </div>
+                            </div>
+                            <span>Senang</span>
+                        </label>
+
+                        <input type="radio" id="emosi-stres" name="jenis-emosi" value="stres" required>
+                        <label for="emosi-stres" class="emotion-card">
+                            <div class="emotion-icon stress-icon">
+                                <div class="face">
+                                    <div class="eyes"></div>
+                                    <div class="mouth"></div>
+                                    <div class="sweat-drops"></div>
+                                </div>
+                            </div>
+                            <span>Stres</span>
+                        </label>
+
+                        <input type="radio" id="emosi-sedih" name="jenis-emosi" value="sedih" required>
+                        <label for="emosi-sedih" class="emotion-card">
+                            <div class="emotion-icon sad-icon">
+                                <div class="face">
+                                    <div class="eyes"></div>
+                                    <div class="mouth"></div>
+                                    <div class="tears"></div>
+                                </div>
+                            </div>
+                            <span>Sedih</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Intensitas:</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star10" name="intensitas" value="10">
+                        <label for="star10" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star9" name="intensitas" value="9">
+                        <label for="star9" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star8" name="intensitas" value="8">
+                        <label for="star8" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star7" name="intensitas" value="7">
+                        <label for="star7" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star6" name="intensitas" value="6">
+                        <label for="star6" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star5" name="intensitas" value="5">
+                        <label for="star5" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star4" name="intensitas" value="4">
+                        <label for="star4" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star3" name="intensitas" value="3">
+                        <label for="star3" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star2" name="intensitas" value="2">
+                        <label for="star2" class="star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star1" name="intensitas" value="1" required>
+                        <label for="star1" class="star"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="catatan">Catatan (Opsional):</label>
+                    <textarea id="catatan"></textarea>
+                </div>
+                <button type="submit">Simpan</button>
+            </form>
+        </section>
+
+        <!-- Riwayat Emosi Section -->
+        <section id="riwayat" class="section">
+            <h2>Riwayat Emosi</h2>
+            <table id="riwayat-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Jenis Emosi</th>
+                        <th>Intensitas</th>
+                        <th>Catatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Statistik Section -->
+        <section id="statistik" class="section">
+            <h2>Statistik Emosi</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-pie"></i> Distribusi Emosi</h3>
+                    <canvas id="emosiChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-line"></i> Tren Intensitas</h3>
+                    <canvas id="intensitasChart"></canvas>
+                </div>
+            </div>
+            <div class="download-buttons">
+                <button id="download-csv" class="download-btn">
+                    <i class="fas fa-file-csv"></i> Download CSV
+                </button>
+                <button id="download-json" class="download-btn">
+                    <i class="fas fa-file-code"></i> Download JSON
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
